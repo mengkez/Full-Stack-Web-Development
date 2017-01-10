@@ -1,0 +1,50 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <script>
+            var color = ["red","yellow","blue","orange","purple","white","black","pink","brown"];
+            var finish = false;
+            var guess = 0;
+            function do_game(){
+                var num = Math.random()*8;
+                var index = Math.floor(num);
+                var target = color[index];
+                alert(target);
+                while(finish!=true){
+                   var input = prompt("Guess a color from:red,yellow,blue,orange,purple,white,black,pink,brown");
+                    guess++;
+                    finish = check_guess(input,target);
+                }
+                myBody = document.getElementsByTagName("body")[0];
+                myBody.style.background=target;
+                alert("Cong! It took your "+guess+" times to finish the game");
+                
+                
+            }
+            function check_guess(guessinput,guesstarget){
+                if(guessinput==guesstarget){
+                    return true;
+                }
+                var index = 0;
+                while(index<9){
+                    if(color[index]==guessinput){
+                        if(guessinput<guesstarget){
+                            alert("Your color is alphabetically lower than mine");
+                            return false;
+                        }else{
+                            alert("Your color is alphabetically higher than mine");
+                            return false;
+                        }
+                    }
+                    
+                    index++;
+                }
+                alert("I don't recognize your color");
+                return false;
+                
+            }
+        </script>
+    </head>
+    <body onload="do_game()">
+    </body>
+</html>
